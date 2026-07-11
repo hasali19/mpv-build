@@ -19,9 +19,8 @@ jobs:
 
       - name: Build
         run: |
-          mkdir dist
-          echo "--prefix=$(pwd)/dist"
           ./rebuild -j$(nproc)
-          ./install
+          mkdir dist
+          DESTDIR="$(pwd)/dist" ./install
 
       - run: ls -R dist
