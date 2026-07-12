@@ -23,4 +23,7 @@ jobs:
           mkdir dist
           DESTDIR="$(pwd)/dist" ./install
 
-      - run: ls -R dist
+      - uses: actions/upload-artifact@v7
+        with:
+          name: mpv-build
+          path: dist/usr/local
