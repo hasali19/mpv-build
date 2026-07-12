@@ -56,4 +56,4 @@ jobs:
           automatic_release_tag: "${{ steps.create-git-tag.outputs.TAG }}"
           prerelease: false
           title: "${{ steps.create-git-tag.outputs.TAG }}"
-          files: release_artifacts/*
+          files: mpv-build.tar.gz
