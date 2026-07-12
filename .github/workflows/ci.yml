@@ -43,6 +43,12 @@ jobs:
 
       - name: Prepare artifacts
         run: tar -czvf mpv-build.tar.gz mpv-build/*
+      
+      - name: Create git tag
+        id: create-git-tag
+        run: |
+          tag="autobuild-$(date -u '+%Y-%m-%d-%H-%M')"
+          echo "TAG=$tag" >> $GITHUB_OUTPUT
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
