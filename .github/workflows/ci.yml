@@ -27,3 +27,29 @@ jobs:
         with:
           name: mpv-build
           path: dist/usr/local
+  
+  release:
+    runs-on: ubuntu-latest
+    if: success() && github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: mpv-build
+
+      - name: Prepare artifacts
+        run: tar -czvf mpv-build.tar.gz mpv-build/*
+      
+      - name: Create git tag
+        id: create-git-tag
+        run: |
+          tag="autobuild-$(date -u '+%Y-%m-%d-%H-%M')"
+          git tag $tag
+          git push origin $tag
+          echo "TAG=$tag" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ steps.create-git-tag.outputs.TAG }} mpv-build.tar.gz \
+            -n "{{ steps.create-git-tag.outputs.TAG }}"
