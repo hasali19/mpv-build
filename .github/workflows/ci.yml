@@ -36,11 +36,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: mpv-build
+          path: mpv-build
 
       - name: Prepare artifacts
-        run: |
-          ls -R
-          tar -czvf mpv-build.tar.gz mpv-build/*
+        run: tar -czvf mpv-build.tar.gz mpv-build/*
       
       - name: Create git tag
         id: create-git-tag
