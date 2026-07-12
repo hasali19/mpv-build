@@ -43,18 +43,11 @@ jobs:
 
       - name: Prepare artifacts
         run: tar -czvf mpv-build.tar.gz mpv-build/*
-      
-      - name: Create git tag
-        id: create-git-tag
-        run: |
-          tag="autobuild-$(date -u '+%Y-%m-%d-%H-%M')"
-          git tag $tag
-          git push origin $tag
-          echo "TAG=$tag" >> $GITHUB_OUTPUT
 
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create ${{ steps.create-git-tag.outputs.TAG }} mpv-build.tar.gz \
-            -n "{{ steps.create-git-tag.outputs.TAG }}"
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ steps.create-git-tag.outputs.TAG }}"
+          prerelease: false
+          title: "${{ steps.create-git-tag.outputs.TAG }}"
+          files: release_artifacts/*
