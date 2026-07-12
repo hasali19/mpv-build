@@ -38,7 +38,9 @@ jobs:
           name: mpv-build
 
       - name: Prepare artifacts
-        run: tar -czvf mpv-build.tar.gz mpv-build/*
+        run: |
+          ls -R
+          tar -czvf mpv-build.tar.gz mpv-build/*
       
       - name: Create git tag
         id: create-git-tag
