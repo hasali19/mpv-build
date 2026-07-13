@@ -14,7 +14,6 @@
 -Dlcms2=enabled
 -Dlibarchive=enabled
 -Dlibavdevice=enabled
--Dlibcurl=enabled
 -Dlua=luajit
 -Dpipewire=enabled
 -Dpulse=enabled
