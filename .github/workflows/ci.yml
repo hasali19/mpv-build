@@ -19,6 +19,9 @@ jobs:
 
       - name: Build
         run: |
+          for feature in $(cat mpv_features.txt); do
+            echo "-D$feature=true" >> mpv_options
+          done
           ./rebuild -j$(nproc)
           mkdir dist
           DESTDIR="$(pwd)/dist" ./install
