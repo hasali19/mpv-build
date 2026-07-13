@@ -21,7 +21,6 @@
 -Dvaapi=enabled
 -Dvaapi-drm=enabled
 -Dvaapi-x11=enabled
--Dvapoursynth=enabled
 -Dvdpau=enabled
 -Dvector=enabled
 -Dx11=enabled
