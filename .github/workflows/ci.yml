@@ -16,6 +16,22 @@ jobs:
 
       - name: Install dependencies
         run: sudo apt-get install -y build-essential meson nasm libfreetype6-dev libfribidi-dev libharfbuzz-dev libfontconfig-dev liblcms2-dev libarchive-dev librubberband-dev libuchardet-dev
+
+      - name: Cache build directories
+        uses: actions/cache@v4
+        with:
+          path: |
+            ffmpeg
+            fribidi
+            libass
+            libplacebo
+            mpv
+            build_libs
+            ffmpeg_build
+          key: mpv-build-${{ github.run_id }}
+          restore-keys: |
+            mpv-build-
+
       - name: Build
         run: |
           ./rebuild -j$(nproc)
