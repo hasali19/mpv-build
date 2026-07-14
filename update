@@ -27,10 +27,15 @@ do_clone_all()
 
 do_gitmaster()
 {
+    local upstream_branch=master
+    case "$1" in
+        rubberband) upstream_branch=default;;  # rubberband's mainline branch is "default", not "master"
+    esac
+
     set -ex
     (
         cd "$1"
-        git checkout origin/master
+        git checkout origin/"$upstream_branch"
         git remote prune origin
     )
 }
