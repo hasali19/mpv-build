@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e
+
+BUILD="$(pwd)"
+newline="
+"
+
+if test -f "$BUILD"/rubberband_options ; then
+    IFS=$newline
+    set -- $(cat "$BUILD"/rubberband_options) "$@"
+    unset -v IFS
+fi
+
+OPTIONS="-Ddefault_library=static -Dfft=fftw -Dresampler=libsamplerate -Dcmdline=disabled -Dvamp=disabled -Dladspa=disabled -Dlv2=disabled -Djni=disabled -Dtests=disabled"
+
+case "$PKG_CONFIG_PATH" in
+  '')
+    export PKG_CONFIG_PATH="$BUILD/build_libs/lib/pkgconfig"
+    ;;
+  *)
+    export PKG_CONFIG_PATH="$BUILD/build_libs/lib/pkgconfig:$PKG_CONFIG_PATH"
+    ;;
+esac
+
+cd "$BUILD"/rubberband
+
+test -d build && OPTIONS="$OPTIONS --wipe"
+echo Using rubberband options: $OPTIONS "$@"
+
+meson setup build --prefix="$BUILD/build_libs" --libdir="$BUILD/build_libs/lib" $OPTIONS "$@"

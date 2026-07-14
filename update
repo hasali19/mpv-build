@@ -21,6 +21,7 @@ do_clone_all()
     #do_clone "fribidi"    "http://anongit.freedesktop.org/git/fribidi/fribidi.git"
     do_clone "libass"     "https://github.com/libass/libass.git"
     do_clone "libplacebo" "https://github.com/haasn/libplacebo.git"
+    do_clone "rubberband" "https://github.com/breakfastquay/rubberband.git"
     do_clone "mpv"        "https://github.com/mpv-player/mpv.git"
 }
 
@@ -89,6 +90,7 @@ checkout_ffmpeg=master
 #checkout_fribidi=release
 checkout_libass=master
 checkout_libplacebo=master
+checkout_rubberband=master
 checkout_mpv=master
 
 
@@ -100,6 +102,7 @@ checkout_all()
     #$checkout fribidi $checkout_fribidi
     checkout libass $checkout_libass
     checkout libplacebo $checkout_libplacebo
+    checkout rubberband $checkout_rubberband
     checkout mpv $checkout_mpv
 }
 
@@ -124,6 +127,7 @@ case "$1" in
         #checkout_fribidi="master -"
         checkout_libass="master -"
         checkout_libplacebo="master -"
+        checkout_rubberband="master -"
         checkout_mpv="master -"
         ;;
     --release)

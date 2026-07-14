@@ -165,7 +165,7 @@ changes in sub-repositories will break.
 Selecting release vs. master versions
 =====================================
 
-By default, mpv, ffmpeg, libplacebo and libass use the git master versions.
+By default, mpv, ffmpeg, libplacebo, libass and rubberband use the git master versions.
 These are bleeding edge, but should usually work fine. To get a stable
 (slightly stale) version, you can use release versions.
 Note that at least for mpv, releases are not actually maintained - releases
