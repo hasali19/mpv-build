@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get install -y build-essential meson nasm libfreetype6-dev libfribidi-dev libharfbuzz-dev libfontconfig-dev liblcms2-dev libarchive-dev librubberband-dev libuchardet-dev libxfixes-dev
+        run: sudo apt-get install -y build-essential meson nasm libfreetype6-dev libfribidi-dev libharfbuzz-dev libfontconfig-dev liblcms2-dev libarchive-dev librubberband-dev libuchardet-dev libxfixes-dev libzimg-dev
 
       - name: Cache build directories
         uses: actions/cache@v4
